@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2096885748005993"
+     crossorigin="anonymous"></script>
+  <title>Assistente all'efficienza del carburante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: left;
+      background-color: #000;
+      /* background-image: linear-gradient(to bottom, #ffb444, #2862bb); */
+    }
+
+    .container {
+      max-width: 100%;
+      margin-top: 0px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .containerTitle {
+      max-width: 100%;
+      margin: 10px;
+      padding: 10px;
+      font-size: 20px;
+      margin-bottom: 0px;
+      margin-left: 15px;
+    }
+
+    h1 {
+    font-size: 5rem;
+    text-transform: capitalize;
+    /* text-shadow: 1px 1px 1px rgb(227, 152, 3), 2px 2px 1px rgb(0, 0, 0);  */
+    text-align: left;
+    color: #FAFB63;
+    margin-left: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    p{
+      font-size: 40px;
+      font-style:normal;
+      color: #fff;
+      margin-left: 15px;
+      font-family:'Courier New', Courier, monospace;
+    }
+
+    .container2 {
+      max-width: 100%;
+      margin: 0 auto;
+      margin-left: 15px;
+      padding: 10px;
+      font-size: 40px;
+      color: #fff;
+    }
+
+    .form-group {
+      /* margin-bottom: 20px; */
+      display: inherit;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 30px;
+      width: 1000px;
+      font-style: italic;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 25px;
+    }
+
+    button {
+      background-color: #FAFB63;
+      color: #000000;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 80%;
+      margin: 0 auto; /* Centra orizzontalmente */
+      display: block; /* Mostra i pulsanti come blocchi separati */
+      text-align: center; /* Centra il testo all'interno del pulsante */
+      font-size: 22px; /* Dimensione del testo in pixel */
+    }
+
+    .result {
+      margin-top: 35px;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="containerTitle">
+    <img src="b1.png" alt="Logo assistenza" width="250" height="250">
+    <h1>ASSISTENTE EFFICIENZA CARBURANTE.</h1>
+  </div>
+
+
+  <div class="container">
+    <p>L'applicazione fornisce informazioni sul rendimento chilometrico del veicolo in base alla quantita' di benzina o gasolio presente nel serbatoio. <br><br> 
+      Inoltre, consente di calcolare l'importo in euro di benzina o gasolio necessario per un determinato viaggio di una determinata distanza, 
+      mostrando automaticamente il costo in euro per quel percorso specifico.
+  </div>
+
+  <br>
+
+  <div class="container2">
+
+    <div class="form-group">
+      <label for="consumo">Consumo medio (km a litro):</label>
+      <input type="number" class="form-control"  id="consumo" step="0.01" min="0" required>
+    </div>
+
+    <br> <br>
+
+    <div class="form-group">
+      <label for="prezzoCarburante">Prezzo euro a litro carburante:</label>
+      <input type="number" id="prezzoCarburante" step="0.01" min="0" required>
+    </div>
+
+    <br> <hr> <br>
+
+    <div class="form-group mb-2">
+        <label for="euro">Importo da inserire per il carburante in euro:</label>
+        <input type="number" id="euro" step="0.01" min="0" value="email@example.com" required>
+        <button onclick="calcolaChilometridaeffettuare()"><strong>Calcola km da effetturare</strong></button>
+
+    </div>
+    <div class="result" id="risultato1"></div>
+    <br> <hr>
+
+    <div class="form-group mb-2">
+        <label for="km_to_do">Km da effettuare o effettuati:</label>
+        <input type="number" id="km_to_do" step="0.01" min="0" required>
+        <button onclick="calcolaEuroDaInserire()"><strong>Calcola euro da inserire / prezzo speso per il viaggio</strong></button>
+
+    </div>
+    <div class="result" id="risultato2"></div>
+
+
+  </div>
+  
+
+<script>
+  function calcolaChilometridaeffettuare() {
+    var euroCarb = parseFloat(document.getElementById('euro').value);
+    var consumoAuto = parseFloat(document.getElementById('consumo').value);
+    var prezzoCarburante = parseFloat(document.getElementById('prezzoCarburante').value);
+
+    // Controllo se uno o più campi sono vuoti
+  if (!euroCarb || !consumoAuto || !prezzoCarburante) {
+    alert('Inserisci tutti i valori richiesti!');
+    return; // Esco dalla funzione in caso di campi vuoti
+  }
+
+    var litri = euroCarb / prezzoCarburante;
+    var chilometri = consumoAuto * litri;
+
+    document.getElementById('risultato1').textContent = 'Con ' + euroCarb + ' euro di carburante puoi percorrere circa ' + chilometri + ' km.';
+  }
+
+
+  function calcolaEuroDaInserire() {
+    var km_da_effettuare = parseFloat(document.getElementById('km_to_do').value);
+    var consumoAuto = parseFloat(document.getElementById('consumo').value);
+    var prezzoCarburante = parseFloat(document.getElementById('prezzoCarburante').value);
+
+    // Controllo se uno o più campi sono vuoti
+  if (!km_da_effettuare || !consumoAuto || !prezzoCarburante) {
+    alert('Inserisci tutti i valori richiesti!');
+    return; // Esco dalla funzione in caso di campi vuoti
+  }
+
+    var litri = km_da_effettuare / consumoAuto;
+    var prezzo = prezzoCarburante * litri;
+
+    document.getElementById('risultato2').textContent = 'Effettuando ' + km_da_effettuare + 'km spendi ' + prezzo + ' euro.';
+  }
+
+</script>
+
+</body>
+
+</html>
+
